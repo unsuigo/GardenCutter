@@ -14,6 +14,7 @@
         <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Sliceable.cs" />
         <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Slicer.cs" />
         <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Lighsaber.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Cutter.cs" />
       </list>
     </option>
   </component>
@@ -67,6 +68,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/_CompleteGame/Scripts/SlicesMetadata.cs</url>
+          <line>392</line>
+          <properties documentPath="D:\CDE\Unity\GardenCutter\Assets\_CompleteGame\Scripts\SlicesMetadata.cs" initialLine="392">
+            <startOffsets>
+              <option value="14989" />
+            </startOffsets>
+            <endOffsets>
+              <option value="15023" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

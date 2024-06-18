@@ -11,6 +11,9 @@
             <e p="LowPolyTreePack" t="Include">
               <e p="README.txt" t="Include" />
             </e>
+            <e p="LowPolyTreePack2" t="Include">
+              <e p="README.txt" t="Include" />
+            </e>
           </e>
           <e p="Scripts" t="Include">
             <e p="Capsule.cs" t="Include" />
