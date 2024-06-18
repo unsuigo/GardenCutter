@@ -74,8 +74,8 @@ namespace GardenCutter
             GameObject[] slices = Slicer.Slice(plane, other.gameObject);
             Destroy(other.gameObject);
 
-            Rigidbody rigidbody = slices[1].GetComponent<Rigidbody>();
-            Vector3 newNormal = transformedNormal + Vector3.up * _forceAppliedToCut;
+            // Rigidbody rigidbody = slices[1].GetComponent<Rigidbody>();
+            // Vector3 newNormal = transformedNormal + Vector3.up * _forceAppliedToCut;
             // rigidbody.AddForce(newNormal, ForceMode.Impulse);
         }
     }
