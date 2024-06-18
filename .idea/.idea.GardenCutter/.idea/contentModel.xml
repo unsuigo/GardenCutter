@@ -16,9 +16,8 @@
             </e>
           </e>
           <e p="Scripts" t="Include">
-            <e p="Capsule.cs" t="Include" />
             <e p="Cutter.cs" t="Include" />
-            <e p="SimpleCameraController.cs" t="Include" />
+            <e p="SelfDestruct.cs" t="Include" />
             <e p="Sliceable.cs" t="Include" />
             <e p="Slicer.cs" t="Include" />
             <e p="SlicesMetadata.cs" t="Include" />

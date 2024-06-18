@@ -3,29 +3,31 @@ using UnityEngine;
 
 namespace GardenCutter
 {
-
     class Slicer
     {
-        /// <summary>
-        /// Slice the object by the plane 
-        /// </summary>
-        /// <param name="plane"></param>
-        /// <param name="objectToCut"></param>
-        /// <returns></returns>
         public static GameObject[] Slice(Plane plane, GameObject objectToCut)
         {
-            //Get the current mesh and its verts and tris
             Mesh mesh = objectToCut.GetComponent<MeshFilter>().mesh;
-            var a = mesh.GetSubMesh(0);
+
+            if (mesh == null)
+            {
+                Debug.LogError("Mesh is null. Ensure the object has a MeshFilter component with a valid mesh.");
+                return null;
+            }
+
+            if (!mesh.isReadable)
+            {
+                Debug.LogError("The mesh is not readable. Enable Read/Write in import settings.");
+                return null;
+            }
+
             Sliceable sliceable = objectToCut.GetComponent<Sliceable>();
 
             if (sliceable == null)
             {
-                throw new NotSupportedException(
-                    "Cannot slice non sliceable object");
+                throw new NotSupportedException("Cannot slice non sliceable object");
             }
 
-            //Create left and right slice of hollow object
             SlicesMetadata slicesMeta = new SlicesMetadata(plane, mesh, sliceable.IsSolid,
                 sliceable.ReverseWireTriangles, sliceable.ShareVertices, sliceable.SmoothVertices);
 
@@ -41,56 +43,83 @@ namespace GardenCutter
             positiveObject.GetComponent<MeshFilter>().mesh = positiveSideMeshData;
             negativeObject.GetComponent<MeshFilter>().mesh = negativeSideMeshData;
 
-            SetupCollidersAndRigidBodys(ref positiveObject, positiveSideMeshData, sliceable.UseGravity);
-            SetupCollidersAndRigidBodys(ref negativeObject, negativeSideMeshData, sliceable.UseGravity);
+            // Assign the same material as the original object to both new objects
+            var originalMaterial = objectToCut.GetComponent<MeshRenderer>().material;
+            positiveObject.GetComponent<MeshRenderer>().material = originalMaterial;
+            negativeObject.GetComponent<MeshRenderer>().material = originalMaterial;
 
-            return new GameObject[] {positiveObject, negativeObject};
+            // Add Sliceable component to new objects
+            positiveObject.AddComponent<Sliceable>().UseGravity=true;
+            negativeObject.AddComponent<Sliceable>().UseGravity=true;
+
+            // Copy all attributes from the original object to the new objects
+            SetupAttributes(objectToCut, positiveObject);
+            SetupAttributes(objectToCut, negativeObject);
+
+            // Calculate the number of triangles to determine which one is smaller
+            int positiveTriangles = positiveSideMeshData.triangles.Length / 3;
+            int negativeTriangles = negativeSideMeshData.triangles.Length / 3;
+                SetupMeshCollider(ref negativeObject, negativeSideMeshData);
+                SetupMeshCollider(ref positiveObject, positiveSideMeshData);
+
+            if (positiveTriangles < negativeTriangles)
+            {
+                SetupSelfDestruct(ref positiveObject, positiveSideMeshData, sliceable.UseGravity);
+                negativeObject.transform.parent = objectToCut.transform.parent;
+            }
+            else
+            {
+                SetupSelfDestruct(ref negativeObject, negativeSideMeshData, sliceable.UseGravity);
+                positiveObject.transform.parent = objectToCut.transform.parent;
+            }
+
+            return new GameObject[] { positiveObject, negativeObject };
         }
 
-        /// <summary>
-        /// Creates the default mesh game object.
-        /// </summary>
-        /// <param name="originalObject">The original object.</param>
-        /// <returns></returns>
-        private static GameObject CreateMeshGameObject(GameObject originalObject)
+        private static void SetupSelfDestruct(ref GameObject obj, Mesh mesh, bool useGravity)
         {
-            var originalMaterial = originalObject.GetComponent<MeshRenderer>().materials;
-
-            GameObject meshGameObject = new GameObject();
-            Sliceable originalSliceable = originalObject.GetComponent<Sliceable>();
-
-            meshGameObject.AddComponent<MeshFilter>();
-            meshGameObject.AddComponent<MeshRenderer>();
-            Sliceable sliceable = meshGameObject.AddComponent<Sliceable>();
-
-            sliceable.IsSolid = originalSliceable.IsSolid;
-            sliceable.ReverseWireTriangles = originalSliceable.ReverseWireTriangles;
-            sliceable.UseGravity = originalSliceable.UseGravity;
-
-            meshGameObject.GetComponent<MeshRenderer>().materials = originalMaterial;
-
-            meshGameObject.transform.localScale = originalObject.transform.localScale;
-            meshGameObject.transform.rotation = originalObject.transform.rotation;
-            meshGameObject.transform.position = originalObject.transform.position;
-
-            meshGameObject.tag = originalObject.tag;
-
-            return meshGameObject;
-        }
-
-        /// <summary>
-        /// Add mesh collider and rigid body to game object
-        /// </summary>
-        /// <param name="gameObject"></param>
-        /// <param name="mesh"></param>
-        private static void SetupCollidersAndRigidBodys(ref GameObject gameObject, Mesh mesh, bool useGravity)
-        {
-            MeshCollider meshCollider = gameObject.AddComponent<MeshCollider>();
-            meshCollider.sharedMesh = mesh;
-            meshCollider.convex = true;
-
-            var rb = gameObject.AddComponent<Rigidbody>();
+            Rigidbody rb = obj.AddComponent<Rigidbody>();
             rb.useGravity = useGravity;
+
+            obj.AddComponent<SelfDestruct>();
+        }
+
+        private static void SetupMeshCollider(ref GameObject obj, Mesh mesh)
+        {
+            MeshCollider collider = obj.AddComponent<MeshCollider>();
+            collider.sharedMesh = mesh;
+            collider.convex = true;
+        }
+
+        private static void SetupAttributes(GameObject original, GameObject newObject)
+        {
+            newObject.transform.position = original.transform.position;
+            newObject.transform.rotation = original.transform.rotation;
+            newObject.transform.localScale = original.transform.localScale;
+
+            newObject.AddComponent<Sliceable>().UseGravity=true;
+            
+            
+            // Copy any other necessary components from the original to the new object
+            // Example: Copying Rigidbody settings (if it exists on the original object)
+            // Rigidbody originalRb = original.GetComponent<Rigidbody>();
+            // if (originalRb != null)
+            // {
+            //     Rigidbody newRb = newObject.AddComponent<Rigidbody>();
+            //     newRb.mass = originalRb.mass;
+            //     newRb.drag = originalRb.drag;
+            //     newRb.angularDrag = originalRb.angularDrag;
+            //     newRb.useGravity = originalRb.useGravity;
+            //     newRb.isKinematic = originalRb.isKinematic;
+            // }
+        }
+
+        private static GameObject CreateMeshGameObject(GameObject original)
+        {
+            GameObject obj = new GameObject();
+            obj.AddComponent<MeshFilter>();
+            obj.AddComponent<MeshRenderer>().materials = original.GetComponent<MeshRenderer>().materials;
+            return obj;
         }
     }
 }
