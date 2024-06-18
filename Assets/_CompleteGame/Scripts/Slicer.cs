@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace GardenCutter
 {
@@ -49,8 +50,8 @@ namespace GardenCutter
             negativeObject.GetComponent<MeshRenderer>().material = originalMaterial;
 
             // Add Sliceable component to new objects
-            positiveObject.AddComponent<Sliceable>().UseGravity=true;
-            negativeObject.AddComponent<Sliceable>().UseGravity=true;
+            // positiveObject.AddComponent<Sliceable>().UseGravity=true;
+            // negativeObject.AddComponent<Sliceable>().UseGravity=true;
 
             // Copy all attributes from the original object to the new objects
             SetupAttributes(objectToCut, positiveObject);
@@ -64,24 +65,27 @@ namespace GardenCutter
 
             if (positiveTriangles < negativeTriangles)
             {
-                SetupSelfDestruct(ref positiveObject, positiveSideMeshData, sliceable.UseGravity);
+                SetupSelfDestruct(ref positiveObject,  sliceable.UseGravity);
                 negativeObject.transform.parent = objectToCut.transform.parent;
             }
             else
             {
-                SetupSelfDestruct(ref negativeObject, negativeSideMeshData, sliceable.UseGravity);
+                SetupSelfDestruct(ref negativeObject, sliceable.UseGravity);
                 positiveObject.transform.parent = objectToCut.transform.parent;
             }
 
             return new GameObject[] { positiveObject, negativeObject };
         }
 
-        private static void SetupSelfDestruct(ref GameObject obj, Mesh mesh, bool useGravity)
+        private static void SetupSelfDestruct(ref GameObject obj, bool useGravity)
         {
             Rigidbody rb = obj.AddComponent<Rigidbody>();
+            rb.mass = 5;
             rb.useGravity = useGravity;
-
             obj.AddComponent<SelfDestruct>();
+            Sliceable sl = obj.GetComponent<Sliceable>();
+            Object.Destroy(sl);
+
         }
 
         private static void SetupMeshCollider(ref GameObject obj, Mesh mesh)

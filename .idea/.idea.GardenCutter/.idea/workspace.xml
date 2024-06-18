@@ -9,6 +9,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F7237CF7-ABEF-49BF-BB55-2D7EB076E422/d0/4f37d5ea/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_CompleteGame/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_CompleteGame/Scripts/SelfDestruct.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -17,8 +18,9 @@
         <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/SlicesMetadata.cs" />
         <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Lighsaber.cs" />
         <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Sliceable.cs" />
-        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Cutter.cs" />
         <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/SelfDestruct.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Cutter.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Slicer.cs" />
       </list>
     </option>
@@ -76,13 +78,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Slicer.cs</url>
-          <line>81</line>
+          <line>83</line>
           <properties documentPath="D:\CDE\Unity\GardenCutter\Assets\_CompleteGame\Scripts\Slicer.cs" initialLine="85">
             <startOffsets>
-              <option value="3541" />
+              <option value="3553" />
             </startOffsets>
             <endOffsets>
-              <option value="3568" />
+              <option value="3580" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="5" />
