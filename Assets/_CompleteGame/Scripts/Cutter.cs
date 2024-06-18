@@ -26,6 +26,12 @@ namespace GardenCutter
         private Vector3 _triggerEnterBasePosition;
         private Vector3 _triggerExitTipPosition;
 
+
+        public bool IsCutting
+        {
+            get;
+            set;
+        }
      
         private void OnTriggerEnter(Collider other)
         {
@@ -35,6 +41,10 @@ namespace GardenCutter
 
         private void OnTriggerExit(Collider other)
         {
+            if (!IsCutting)
+            {
+                return;
+            }
             Sliceable slisable = other.GetComponent<Sliceable>();
             if (slisable is  null)
             {
