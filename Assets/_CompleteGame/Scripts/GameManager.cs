@@ -5,35 +5,43 @@ namespace GardenCutter
     
     public class GameManager : MonoBehaviour
     {
-        [SerializeField]
-        private Cutter cutter; // Reference to the chainsaw object
+        [SerializeField] private Cutter _cutter; 
+        [SerializeField] private Scisslers _scisslers;
 
-        private AudioSource audioSource;
+        private AudioSource _cutterAudioSource;
 
         private void Awake()
         {
-            if (cutter != null)
+            if (_cutter != null)
             {
-                audioSource = cutter.GetComponent<AudioSource>();
+                _cutterAudioSource = _cutter.GetComponent<AudioSource>();
             }
             else
             {
                 Debug.LogError("Chainsaw object is not assigned in the GameManager.");
             }
+
+            // EnableCutting(true);
         }
 
         public void EnableCutting(bool enable)
         {
             if (enable)
             {
-                cutter.IsCutting = true;
-                audioSource.Play();
-                    
+                _cutter.IsCutting = true;
+                _cutterAudioSource.Play();
+                _scisslers.IsCutting = true;
+                _scisslers.Cut();
+                Debug.Log($"Cut");
             }
             else
             {
-               cutter.IsCutting = false;
-                audioSource.Stop();
+               _cutter.IsCutting = false;
+                _cutterAudioSource.Stop();
+               _scisslers.IsCutting = false;
+               _scisslers.StopCut();
+               Debug.Log($"Stop Cut");
+
             }
 
         }

@@ -3,7 +3,7 @@
 
 namespace GardenCutter
 {
-    public class Cutter : MonoBehaviour
+    public class Cutter : MonoBehaviour, ICut
     {
 
         [SerializeField] [Tooltip("The empty game object located at the tip of the blade")]

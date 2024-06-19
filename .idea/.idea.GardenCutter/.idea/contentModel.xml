@@ -8,6 +8,9 @@
       <e p="Assets" t="Include">
         <e p="_CompleteGame" t="Include">
           <e p="Art" t="Include">
+            <e p="Combat scissors" t="Include">
+              <e p="README.txt" t="Include" />
+            </e>
             <e p="LowPolyTreePack" t="Include">
               <e p="README.txt" t="Include" />
             </e>
@@ -16,15 +19,31 @@
             </e>
           </e>
           <e p="Scripts" t="Include">
-            <e p="Cutter.cs" t="Include" />
+            <e p="CutSystem" t="Include">
+              <e p="Cutter.cs" t="Include" />
+              <e p="SelfDestruct.cs" t="Include" />
+              <e p="Sliceable.cs" t="Include" />
+              <e p="Slicer.cs" t="Include" />
+              <e p="SlicesMetadata.cs" t="Include" />
+            </e>
+            <e p="Deformator.cs" t="Include" />
+            <e p="DeformSystem" t="Include">
+              <e p="IcosphereBehaviour.cs" t="Include" />
+              <e p="ICut.cs" t="Include" />
+              <e p="MeshDeformer.cs" t="Include" />
+              <e p="MouseBehaviour.cs" t="Include" />
+              <e p="Scisslers.cs" t="Include" />
+              <e p="SphereBehaviour.cs" t="Include" />
+            </e>
             <e p="GameManager.cs" t="Include" />
-            <e p="SelfDestruct.cs" t="Include" />
-            <e p="Sliceable.cs" t="Include" />
-            <e p="Slicer.cs" t="Include" />
-            <e p="SlicesMetadata.cs" t="Include" />
           </e>
         </e>
         <e p="Samples" t="Include">
+          <e p="Deformable Mesh" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="TreeGenerator.cs" t="Include" />
+            </e>
+          </e>
           <e p="XR Interaction Toolkit" t="Include">
             <e p="2.4.3" t="Include">
               <e p="Starter Assets" t="Include">

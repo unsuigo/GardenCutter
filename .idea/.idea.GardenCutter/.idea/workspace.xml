@@ -8,9 +8,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.5.2/Runtime/AffordanceSystem/Receiver/Rendering/ColorMaterialPropertyAffordanceReceiver.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F7237CF7-ABEF-49BF-BB55-2D7EB076E422/d0/4f37d5ea/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/582AB972-6E0C-4A0A-AB7E-5D501228E9F0/c0/5e1a3161/AudioSource.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_CompleteGame/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/_CompleteGame/Scripts/SelfDestruct.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_CompleteGame/Scripts/DeformSystem/ICut.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_CompleteGame/Scripts/DeformSystem/Scisslers.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -20,8 +23,17 @@
         <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Sliceable.cs" />
         <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/SelfDestruct.cs" />
         <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Cutter.cs" />
-        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Slicer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Samples/Deformable Mesh/Scripts/Deformator.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/DeformSystem/ICut.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/CutSystem/Cutter.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/DeformSystem/MeshDeformer.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/DeformSystem/SphereBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/DeformSystem/IcosphereBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/DeformSystem/MouseBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Deformator.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CompleteGame/Scripts/DeformSystem/Scisslers.cs" />
       </list>
     </option>
   </component>
@@ -59,37 +71,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/_CompleteGame/Scripts/SlicesMetadata.cs</url>
-          <line>392</line>
-          <properties documentPath="D:\CDE\Unity\GardenCutter\Assets\_CompleteGame\Scripts\SlicesMetadata.cs" initialLine="392">
-            <startOffsets>
-              <option value="14989" />
-            </startOffsets>
-            <endOffsets>
-              <option value="15023" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/_CompleteGame/Scripts/Slicer.cs</url>
-          <line>83</line>
-          <properties documentPath="D:\CDE\Unity\GardenCutter\Assets\_CompleteGame\Scripts\Slicer.cs" initialLine="85">
-            <startOffsets>
-              <option value="3553" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3580" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
